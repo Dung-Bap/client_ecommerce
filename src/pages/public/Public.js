@@ -17,7 +17,7 @@ const Public = () => {
     };
 
     return (
-        <div onScroll={onScroll} className="max-h-screen relative overflow-y-auto flex flex-col items-center">
+        <div onScroll={onScroll} className="max-h-screen relative flex flex-col items-center">
             <div ref={pageRef} className="w-full">
                 <TopHeader />
             </div>
