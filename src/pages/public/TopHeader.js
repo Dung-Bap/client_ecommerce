@@ -1,17 +1,13 @@
 import React, { memo, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import path from '../../ultils/path';
 import { getCurrent } from '../../store/user/asyncActions';
-import { clearMessage } from '../../store/user/userSlice';
-import { showMenu } from '../../store/app/appSlice';
 
 const TopHeader = () => {
-    const { isLoggedIn, userData, message } = useSelector(state => state.user);
+    const { isLoggedIn, userData } = useSelector(state => state.user);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (isLoggedIn) {
