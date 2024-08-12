@@ -1,43 +1,72 @@
+import './style.css';
+
 import React, { memo } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {
+    ClassicEditor,
+    Bold,
+    Essentials,
+    Heading,
+    Indent,
+    IndentBlock,
+    Italic,
+    Link,
+    List,
+    MediaEmbed,
+    Paragraph,
+    Table,
+    Undo,
+} from 'ckeditor5';
+
+import 'ckeditor5/ckeditor5.css';
 
 export const MarkDownEditor = ({ label, value, changeValue, name, invalidFields, setInvalidFields }) => {
+    console.log(value);
     return (
         <div className="mt-4">
             <label className="text-white">{label}</label>
-            <Editor
-                apiKey={process.env.REACT_APP_API_TINYMCE}
-                initialValue={value}
-                onChange={e => changeValue(prev => ({ ...prev, [name]: e.target.getContent() }))}
-                onFocus={() => setInvalidFields && setInvalidFields([])} // khi focus thì xoá invalid đi
-                init={{
-                    height: 500,
-                    menubar: true,
-                    plugins: [
-                        'advlist',
-                        'autolink',
-                        'lists',
+            <CKEditor
+                className={'ahihi'}
+                data={value}
+                editor={ClassicEditor}
+                onChange={(event, editor) => {
+                    const data = editor.getData();
+                    changeValue(prev => ({ ...prev, [name]: data }));
+                }}
+                onFocus={() => setInvalidFields && setInvalidFields([])}
+                config={{
+                    toolbar: [
+                        'undo',
+                        'redo',
+                        '|',
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        '|',
                         'link',
-                        'image',
-                        'charmap',
-                        'anchor',
-                        'searchreplace',
-                        'visualblocks',
-                        'code',
-                        'fullscreen',
-                        'insertdatetime',
-                        'media',
-                        'table',
-                        'preview',
-                        'help',
-                        'wordcount',
+                        'insertTable',
+                        'mediaEmbed',
+                        '|',
+                        'bulletedList',
+                        'numberedList',
+                        'indent',
+                        'outdent',
                     ],
-                    toolbar:
-                        'undo redo | blocks | ' +
-                        'bold italic forecolor | alignleft aligncenter ' +
-                        'alignright alignjustify | bullist numlist outdent indent | ' +
-                        'removeformat | help',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                    plugins: [
+                        Bold,
+                        Essentials,
+                        Heading,
+                        Indent,
+                        IndentBlock,
+                        Italic,
+                        Link,
+                        List,
+                        MediaEmbed,
+                        Paragraph,
+                        Table,
+                        Undo,
+                    ],
                 }}
             />
             {invalidFields?.some(el => el.name === name) && (

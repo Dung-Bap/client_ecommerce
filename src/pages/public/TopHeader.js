@@ -24,29 +24,29 @@ const TopHeader = () => {
         }
     }, [dispatch, isLoggedIn]);
 
-    useEffect(() => {
-        if (message)
-            Swal.fire({
-                title: 'Login failed',
-                text: message,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Oki',
-            }).then(result => {
-                if (result.isConfirmed) {
-                    navigate(`${path.LOGIN}`);
-                    dispatch(clearMessage());
-                    dispatch(showMenu());
-                }
-                if (result.isDismissed) {
-                    dispatch(clearMessage());
-                    dispatch(showMenu());
-                }
-            });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [message]);
+    // useEffect(() => {
+    //     if (message)
+    //         Swal.fire({
+    //             title: 'Login failed',
+    //             text: message,
+    //             icon: 'warning',
+    //             showCancelButton: true,
+    //             confirmButtonColor: '#3085d6',
+    //             cancelButtonColor: '#d33',
+    //             confirmButtonText: 'Oki',
+    //         }).then(result => {
+    //             if (result.isConfirmed) {
+    //                 navigate(`${path.LOGIN}`);
+    //                 dispatch(clearMessage());
+    //                 dispatch(showMenu());
+    //             }
+    //             if (result.isDismissed) {
+    //                 dispatch(clearMessage());
+    //                 dispatch(showMenu());
+    //             }
+    //         });
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [message]);
 
     return (
         <div className="w-full hidden sm:flex justify-center bg-main p-2 text-[12px] text-white  ">
