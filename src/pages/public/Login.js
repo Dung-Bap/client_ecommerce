@@ -204,14 +204,12 @@ const Login = () => {
                                     />
                                 )}
                                 <InputFileds
-                                    defaultValue={!showRegister ? 'ngovandung397@gmail.com' : ''}
-                                    placeholder={'Your Email'}
+                                    placeholder={!showRegister ? 'ngovandung397@gmail.com' : 'Your Email'}
                                     registername={register('email')}
                                     errorName={errors.email?.message}
                                 />
                                 <InputFileds
-                                    defaultValue={!showRegister ? 'AdminTest@123' : ''}
-                                    placeholder={'Password'}
+                                    placeholder={!showRegister ? 'AdminTest@123' : 'Password'}
                                     registername={register('password')}
                                     errorName={errors.password?.message}
 
